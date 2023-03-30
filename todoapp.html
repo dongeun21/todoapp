@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>실습 3-2</title>
+<style>
+	#todoform {
+		padding: 50px 20px;
+		margin: auto;
+		margin-top: 3em;
+		width: 75%;
+		background-color: rgb(255, 193, 7);
+		box-shadow: 10px 5px 5px lightgray;
+	}
+	#todolist li {
+		width: 400;
+		margin: auto;
+		list-style: none;
+		line-height: 40px;
+		position: relative;
+		text-indent: 15px;
+		background-color: lightyellow;
+		font-weight: 400;
+	}
+</style>
+<script>
+	function addItem() {
+		let todo = document.getElementById("item");
+		let list = document.getElementById("todolist");
+		let listitem = document.createElement("li");
+		let xbtn = document.createElement("button");		
+		
+		listitem.innerText = todo.value;
+		listitem.appendChild(xbtn);
+		list.appendChild(listitem);
+		todo.value = "";
+		todo.focus();
+		
+		xbtn.innerText = "x";
+		xbtn.style.fontSize = "15px";
+		xbtn.style.border = "none";
+		xbtn.style.float = "right";
+		xbtn.style.right = "17px";
+		xbtn.style.marginTop = "10px";
+
+		xbtn.onclick = function(e) {
+			let pnode = e.target.parentNode;
+			list.removeChild(pnode);
+		}
+	}
+</script>
+</head>
+<body>
+	<div id="todoform">
+		<form name="form1">
+		<h2>My ToDo App</h2>
+		<hr>
+		<div>
+			<input id="item" type="text" placeholder="할일을 입력하세요...">
+			<button type="button" onclick="addItem()">할일 추가</button>
+		</div>
+		</form>
+		<hr>
+		<ul id="todolist"></ul>
+		</div>
+</body>
+</html>
